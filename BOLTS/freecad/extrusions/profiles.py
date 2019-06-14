@@ -22,10 +22,37 @@
 
 
 import math
+from os.path import isfile
 
+import FreeCAD
 import Part
 from FreeCAD import Vector
 from DraftGeomUtils import fillet as draft_fillet
+
+
+# ************************************************************************************************
+def profile8(
+	params,
+	document
+):
+	# key = params['type']  # not used
+	name = params["name"]
+	face_file = params["face_file"]
+	l = params["l"]
+
+	if not isfile(face_file):
+		# TODO: PopUp
+		FreeCAD.Console.PrintError(
+			'File with base geometry to extrude not found: {}\n'
+			.format(face_file)
+		)
+		return
+
+	face = Part.read(face_file)
+	part = document.addObject("Part::Feature","BOLTS_part")
+	part.Label = name
+
+	part.Shape = face.extrude(Vector(0,0,l)).removeSplitter()
 
 
 # ************************************************************************************************

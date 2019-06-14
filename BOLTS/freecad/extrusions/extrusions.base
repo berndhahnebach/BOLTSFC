@@ -4,6 +4,8 @@
   license: CC0 1.0 <http://creativecommons.org/publicdomain/zero/1.0/>
   type: function
   functions:
+   - name: profile8
+     classids: [profile8]
    - name: vslot20x20
      classids: [vslot20x20]
    - name: vslot20x40

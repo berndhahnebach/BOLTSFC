@@ -22,6 +22,31 @@ author: Johannes Reinhardt <jreinhardt@ist-dein-freund.de>
 license: LGPL 2.1+ <http://www.gnu.org/licenses/lgpl-2.1>
 blt-version: 0.4
 classes:
+  - id: profile8
+    names:
+      name: Profile 8
+      labeling: "Profile 8 %(type)s, l=%(l)s"
+      description: Generic  aluminium extrusion Profile 8 series
+    parameters:
+      free: [type,l]
+      defaults: {type: "40x40E", l: 100}
+      types:
+        type: Table Index
+        face_file: String
+        l: Length (mm)
+      description:
+        type: profile type
+        face_file: file name of extrution face, could be created by BOLTS too
+        l: profile length
+      tables:
+        index: type
+        columns: [face_file]
+        data:
+          #type       : [face_file]
+          40x40       : ["brep"]
+          40x40E      : ["brep"]
+          40x40light  : ["brep"]
+    source: measured myself
   - id: tslot20x20
     names:
       name: T slot extrusion 20x20

@@ -361,6 +361,16 @@ class BoltsWidget(QBoltsWidget):
 		try:
 			base = self.dbs["freecad"].base_classes.get_src(cl)
 			coll = self.repo.collection_classes.get_src(cl)
+
+			# in params add path to key face_file
+			if 'face_file' in params:
+				params['face_file'] = join(
+					self.repo.path,
+					'data',
+					coll.id,
+					"{}_{}.{}".format(cl.id, params['type'], params['face_file'])
+				)
+			
 			add_part(coll,base,params,FreeCAD.ActiveDocument)
 			FreeCADGui.SendMsgToActiveView("ViewFit")
 			FreeCAD.ActiveDocument.recompute()
